@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "express": "^4.17.3",
+    "fund": "^1.0.0",
+    "mysql": "^2.18.1",
+    "serve-static": "^1.15.0"
+  },
+  "name": "0retofarm88",
+  "version": "1.0.0",
+  "description": "retofarm test",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
