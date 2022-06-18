@@ -5,9 +5,8 @@ const saveButton = document.querySelector('#save-button');
 const deleteButton = document.querySelector('#delete-button');
 const searchButton = document.querySelector('#search-button');
 const searchtext = document.querySelector('#search-text');
+$("#search-label").text("생장코드: ");
 tesstr ='ttt';
-
-$("#search-label").text("장비명: ");
 
 searchButton.addEventListener('click', function(e) {
 
@@ -23,8 +22,8 @@ searchButton.addEventListener('click', function(e) {
 });
 
 addButton.addEventListener('click', () => {
-	console.log("11")
-	var rowData = [loc_cd='', loc_nm='', up_loc='', seq_no='', start_dt='', end_dt='', use_yn='', rmk_dc='']
+	console.log("addddd")
+	var rowData = [grw_cd='',  svy_tp='',  ssr_id='',  start_dt='',  start_tm='',  end_dt='',  end_tm='',  eqp_cd='',  max_lmt_num='',  max_num='',  std_num='',  min_num='',  min_lmt_num='']
 
 	vgrid.appendRow(rowData, {
 	at: 0,
@@ -53,14 +52,19 @@ addButton.addEventListener('click', () => {
        
         editingEvent : 'click',
         columns: [
-            { name: 'eqp_cd', header:'코드', editor: 'text', width: 120 ,align:"center"},
-            { name: 'eqp_nm', header:'장비명', editor: 'text', width: 150,align:"center" },
-            { name: "offset_cd", header:"오프셋", editor: "text", width: 120 ,align:"center"},
-            { name: "mdl_nm", header:"모델", editor: "text", width: 150 ,align:"center"},
-            { name: "srl_num", header:"시리얼번호", editor: "text", width: 150 ,align:"center"},
-			{ name: "loc_cd", header:"위치", editor: "text", width: 150 ,align:"center"},
-            { name: "use_yn", header:"사용여부", editor: "text", width: 150 ,align:"center"},
-            { name: "rmk_dc", header:"비고", editor: "text", width: 600 ,align:"left"}
+            { name: 'grw_cd', header:'생장코드', editor: 'text', width: 120 ,align:"center"},
+            { name: 'svy_tp', header:'측정유형', editor: 'text', width: 150,align:"center" },
+            { name: "ssr_id", header:"센서ID", editor: "text", width: 120 ,align:"center"},
+            { name: "start_dt", header:"시작일", editor: "text", width: 150 ,align:"center"},
+            { name: "start_tm", header:"종료일", editor: "text", width: 150 ,align:"center"},
+			      { name: "end_dt", header:"종료시간", editor: "text", width: 150 ,align:"center"},
+            { name: "end_tm", header:"위치", editor: "text", width: 150 ,align:"center"},
+            { name: "eqp_cd", header:"장비", editor: "text", width: 100 ,align:"left"},
+            { name: "max_lmt_num", header:"최고상한", editor: "text", width: 100 ,align:"left"},
+            { name: "max_num", header:"상한값", editor: "text", width: 100 ,align:"left"},
+            { name: "std_num", header:"기준값", editor: "text", width: 100 ,align:"left"},
+            { name: "min_num", header:"하한값", editor: "text", width: 100 ,align:"left"},
+            { name: "min_lmt_num", header:"최고하한", editor: "text", width: 100 ,align:"left"},
          ]
        ,
 
@@ -68,8 +72,8 @@ addButton.addEventListener('click', () => {
             contentType: 'application/json',
 
               api: {
-                    readData: { url: () => `/RTF_EQP_MST?eqp_nm=${$("#search-text").val()}`, method: 'GET' },
-                    modifyData: { url: '/SAVE_RTF_EQP_MST', method: 'PUT' },
+                    readData: { url: () => `/RTF_CTRL_SCH?grw_cd=${$("#search-text").val()}`, method: 'GET' },
+                    modifyData: { url: '/SAVE_RTF_CTRL_SCH', method: 'PUT' },
                 }
             
 	    },

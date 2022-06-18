@@ -332,17 +332,17 @@ th {
 label {
   display: inline-block;
 }
-
+/* 
 button {
   border-radius: 0;
 }
 
 button:focus:not(:focus-visible) {
   outline: 0;
-}
+} */
 
 input,
-button,
+/* button, */
 select,
 optgroup,
 textarea {
@@ -352,14 +352,14 @@ textarea {
   line-height: inherit;
 }
 
-button,
+/* button, */
 select {
   text-transform: none;
 }
-
+/* 
 [role=button] {
   cursor: pointer;
-}
+} */
 
 select {
   word-wrap: normal;
@@ -371,15 +371,15 @@ select:disabled {
 [list]::-webkit-calendar-picker-indicator {
   display: none;
 }
-
+/* 
 button,
-[type=button],
+[type=button], */
 [type=reset],
 [type=submit] {
   -webkit-appearance: button;
 }
-button:not(:disabled),
-[type=button]:not(:disabled),
+/* button:not(:disabled),
+[type=button]:not(:disabled), */
 [type=reset]:not(:disabled),
 [type=submit]:not(:disabled) {
   cursor: pointer;
@@ -427,10 +427,10 @@ legend + * {
 ::-webkit-datetime-edit-year-field {
   padding: 0;
 }
-
+/* 
 ::-webkit-inner-spin-button {
   height: auto;
-}
+} */
 
 [type=search] {
   outline-offset: -2px;
@@ -452,7 +452,7 @@ legend + * {
 ::-webkit-color-swatch-wrapper {
   padding: 0;
 }
-
+/* 
 ::-webkit-file-upload-button {
   font: inherit;
 }
@@ -464,7 +464,7 @@ legend + * {
 ::-webkit-file-upload-button {
   font: inherit;
   -webkit-appearance: button;
-}
+} */
 
 output {
   display: inline-block;

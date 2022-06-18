@@ -1,60 +1,101 @@
-$(function() {
 
-        $("#jsGrid").jsGrid({
-            height: "70%",
-            width: "90%",
-            filtering: true,
-            inserting: true,
-            editing: true,
-            sorting: true,
-            paging: true,
-            autoload: true,
-            pageSize: 10,
-            pageButtonCount: 5,
-            deleteConfirm: "Do you really want to delete client?",
-            controller: {
-                loadData: function(filter) {
-                    return $.ajax({
-                        type: "GET",
-                        url: "/RTF_LOC_MST/",
-                        data: filter
-                    });
-                },
-                insertItem: function(item) {
-                    return $.ajax({
-                        type: "POST",
-                        url: "/RTF_LOC_MST/",
-                        data: item
-                    });
-                },
-                updateItem: function(item) {
-					console.log('item', item);
-                    return $.ajax({
-                        type: "PUT",
-                        url: "/RTF_LOC_MST/",
-                        data: item
-                    });
-                },
-                deleteItem: function(item) {
-                    return $.ajax({
-                        type: "DELETE",
-                        url: "/RTF_LOC_MST/",
-                        data: item
-                    });
-                }
-            },
-            fields: [
-                { name: "loc_cd", title:"코드", type: "text", width: 150 },
-                { name: "loc_nm", title:"위치명", type: "text", width: 150 },
-                { name: "up_loc", title:"상위위치", type: "text", width: 150 },
-                { name: "seq_no", title:"순서", type: "number", width: 150 },
-                { name: "start_dt", title:"시작일", type: "text", width: 150 },
-                { name: "end_dt", title:"종료일", type: "text", width: 150 },
-                { name: "use_yn", title:"사용여부", type: "text", width: 50 },
-                { name: "rmk_dc", title:"비고", type: "text", width: 250 },
-                { type: "control" }
-            ]
-        });
 
+const addButton = document.querySelector('#add-button');
+const saveButton = document.querySelector('#save-button');
+const deleteButton = document.querySelector('#delete-button');
+const searchButton = document.querySelector('#search-button');
+const searchtext = document.querySelector('#search-text');
+tesstr ='ttt';
+
+searchButton.addEventListener('click', function(e) {
+
+  if (e.target.id == 'jsGrid') console.log("11")
+
+  console.log('e.target.id'+e.target.id)
+
+  console.log("searchtext:111111111 " + $("#search-text").val())
+  var stext =$("#search-text").val();
+ 
+  vgrid.readData(  param =3333 );
 
 });
+
+addButton.addEventListener('click', () => {
+	console.log("11")
+	var rowData = [loc_cd='', loc_nm='', up_loc='', seq_no='', start_dt='', end_dt='', use_yn='', rmk_dc='']
+
+	vgrid.appendRow(rowData, {
+	at: 0,
+	focus: true
+	});
+});
+
+
+    saveButton.addEventListener('click', () => {
+
+        vgrid.request('modifyData');
+    });
+
+    deleteButton.addEventListener('click', () => {
+
+        vgrid.removeCheckedRows(true);
+        vgrid.request('modifyData');
+    });
+  
+   
+
+    const vgrid = new tui.Grid( {
+        el: document.getElementById('jsGrid'),
+        scrollX : true,
+        scrollY : false,
+       
+        editingEvent : 'click',
+        columns: [
+            { name: 'loc_cd', header:'코드', editor: 'text', width: 120 ,align:"center"},
+            { name: 'loc_nm', header:'위치명', editor: 'text', width: 150,align:"center" },
+            { name: "up_loc", header:"상위위치", editor: "text", width: 120, align:"center" },
+            { name: "seq_no", header:"순서", editor: "text", width: 120 ,align:"center"},
+            { name: "start_dt", header:"시작일", editor: "text", width: 150 ,align:"center"},
+            { name: "end_dt", header:"종료일", editor: "text", width: 150 ,align:"center"},
+            { name: "use_yn", header:"사용여부", editor: "text", width: 150 ,align:"center"},
+            { name: "rmk_dc", header:"비고", editor: "text", width: 600 ,align:"left"}
+         ]
+       ,
+
+        data: {
+            contentType: 'application/json',
+
+              api: {
+                    readData: { url: () => `/RTF_LOC_MST?page_kind=loc_mst&loc_nm=${$("#search-text").val()}`, method: 'GET' },
+                    modifyData: { url: '/SAVE_RTF_LOC_MST', method: 'PUT' },
+                }
+            
+	    },
+      initialRequest: false ,
+       
+
+        
+        rowHeaders: [
+            { type: 'checkbox' }
+          ]
+    } )
+
+    vgrid.on('response', ev => {
+        const {response} = ev.xhr;
+        const responseObj = JSON.parse(response);
+      
+        console.log('result 11: ', JSON.stringify(responseObj));
+
+        console.log("searchtextrrrrrr " + $("#search-text").val())
+      });
+
+      vgrid.on('beforeChange', ev => {
+        console.log('before change:', ev);
+      });
+
+      vgrid.on('afterChange', ev => {
+        console.log('after change:', ev);
+      });
+
+
+
