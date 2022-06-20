@@ -1,0 +1,119 @@
+<!-- <form action="http://localhost:3000/login" method="get"> -->
+  <!-- <label for="fname">id:</label> -->
+  <!-- <input type="text" id="id" name="id" value="gdhong"><br><br> -->
+  <!-- <label for="lname">password:</label> -->
+  <!-- <input type="password" id="password" name="password" value="1111"><br><br> -->
+  <!-- <input type="submit" value="로그인"> -->
+<!-- </form> -->
+<!-- <ul> -->
+  <!-- <li>gdhong / 1111</li> -->
+  <!-- <li>mingi3 / 2222  </li> -->
+  <!-- <li>chan   / chan24</li> -->
+<!-- </ul> -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
+
+input[type=text], input[type=password] {
+  width: 10%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 10%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 10%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<h2>로그인</h2>
+
+<form action="/login" method="get">
+  <div class="imgcontainer">
+    <!-- <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar"> -->
+    <img src="http://retofarm.com/wp-content/uploads/2022/05/%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80-%EC%86%94%EB%A3%A8%EC%85%98-%EB%B3%B5%EC%82%AC-1.jpg"  alt="Avatar" class="avatar">
+ 
+ </div>
+
+  <div class="container">
+    <label for="uname"><b>id</b></label>
+    <input type="text" placeholder="Enter Username" name="id" value="gdhong" required>
+	<p>
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password"  value="1111" required>
+	<p>
+        
+    <button type="submit">로그인</button>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
+</form>
+
+<ul>
+  <li>gdhong / 1111</li>
+  <li>mingi3 / 2222  </li>
+  <li>chan   / chan24</li>
+</ul>
+
+</body>
+</html>

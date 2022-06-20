@@ -32,7 +32,25 @@ console.log("dir=  " +__dirname);
 //app.use(express.static(path.join(__dirname, 'web_2.js')));
 //app.use("/",rouweb2);
 
+// 세션 (begin)
+var session = require('express-session');                      
+var MySQLStore = require('express-mysql-session')(session); 
+var options = {
+	host: "retofarmdb.cvbtmcuybt5k.ap-northeast-2.rds.amazonaws.com",
+	user: "retofarm88",
+	password: "retofarm8!",
+	database: "retofarm"
+};
 
+var sessionStore = new MySQLStore(options);
+
+app.use(session({
+  secret:"asdfasffdas",
+  resave:false,
+  saveUninitialized:true,
+  store: sessionStore
+}))
+// 세션 (end)
 
 
 
@@ -46,24 +64,41 @@ const web2 = require("./web_2");
 
 // views/common.js 가 html template 이다
 app.get('/location', function(req,res){ // 2
-  res.render('common', {name:"/js/RTF_LOC_MST.js"});
+	var login_nm = "";
+	if (req.session.isLogined) {
+		login_nm = req.session.user_nm;
+	}
+  res.render('common', {name:"/js/RTF_LOC_MST.js", user_nm:login_nm});
 });
+
 
 // views/common.js 가 html template 이다
 app.get('/equipment', function(req,res){ // 2
-  res.render('common', {name:"/js/rtf_eqp_mst.js"});
+	var login_nm = "";
+	if (req.session.isLogined) {
+		login_nm = req.session.user_nm;
+	}
+  res.render('common', {name:"/js/rtf_eqp_mst.js", user_nm:login_nm});
 });
 
 // views/common.js 가 html template 이다
 app.get('/sensor', function(req,res){ // 2
-  res.render('common', {name:"/js/rtf_ssr_mst.js"});
+	var login_nm = "";
+	if (req.session.isLogined) {
+		login_nm = req.session.user_nm;
+	}
+  res.render('common', {name:"/js/rtf_ssr_mst.js", user_nm:login_nm});
 });
 
 
 app.get('/ctrlsch', function(req,res){ // 2
 
 	console.log("good!1111");
-	res.render('common', {name:"/js/rtf_ctrl_sch.js"});
+		var login_nm = "";
+	if (req.session.isLogined) {
+		login_nm = req.session.user_nm;
+	}
+	res.render('common', {name:"/js/rtf_ctrl_sch.js", user_nm:login_nm});
 });
 
 
@@ -288,7 +323,33 @@ app.put('/SAVE_RTF_CTRL_SCH', function(req,res) {
 	
 });
 
+// 로그인
+app.get('/login', function(req,rsp){    
+    
+	var post = req.query;
 
+	//console.log('000 id: ' + req.query.id);
+        
+	con.query('select user_id as id, user_nm as user_nm from rtf_user_mst where user_id=? and pwd_no=?',
+    [post.id,post.password], function(err,result){
+    	console.log("session post.id:" + post.id);
+		console.log("session post.password:" + post.password);
+        if(err) throw err;
+        if(result[0]!==undefined){
+			console.log("login success");
+            req.session.uid = result[0].id; 
+            req.session.user_nm = result[0].user_nm;
+            req.session.isLogined = true;
+            //세션 스토어가 이루어진 후 redirect를 해야함.
+            req.session.save(function(){ 
+                rsp.redirect('/');
+            });
+        }
+		// else {
+			// throw "login fail!";
+		// }
+    });
+})
 
 
 // 80 포트로 서버 오픈
