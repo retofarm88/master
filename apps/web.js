@@ -342,7 +342,7 @@ app.get('/login', function(req,rsp){
             req.session.isLogined = true;
             //세션 스토어가 이루어진 후 redirect를 해야함.
             req.session.save(function(){ 
-                rsp.redirect('/');
+                rsp.redirect('/location'); // 로그인 후 이동 화면
             });
         }
 		// else {
