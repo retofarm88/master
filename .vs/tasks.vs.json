@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-apps",
+      "appliesTo": "retofarm1.0/apps/",
+      "type": "launch"
+    }
+  ]
+}
