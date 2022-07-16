@@ -1,0 +1,7 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = true
+[user]
+	email = retofarm88@nodejs-011.cafe24.com
+	name = retofarm88 on nodejs-011.cafe24.com

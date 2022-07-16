@@ -1,0 +1,144 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use English;    # so I can say $EUID instead of $>
+use File::Path qw(mkpath);
+
+# install the gitolite software *system wide*.
+
+# This program does for a manual install (root or non-root method) what
+# doc/packaging.mkd describes is needed to be done by a packager.
+
+# Packagers can also use this program to do the same thing if they wish.
+
+my ( $bin_dir, $conf_dir, $hooks_dir );
+
+check_args();
+argv_or_defaults();
+check_dirs();
+
+use FindBin;
+# we assume the standard gitolite source tree is here!
+chdir( $FindBin::Bin . "/.." ) or die "can't cd: $!\n";
+
+# notice the 'and' for failure after system() calls, because they return
+# "shell truth" not "perl truth"
+
+# copy src
+system("cp src/* $bin_dir") and die "cp src/* to $bin_dir failed";
+
+# fixup GL_PACKAGE_CONF in gl-setup
+replace( "/tmp/share/gitolite/conf", $conf_dir, "$bin_dir/gl-setup" );
+
+# record which version is being sent across; we assume it's HEAD
+record_version();
+
+# copy conf
+system("cp -R conf/* $conf_dir") and die "cp conf/* to $conf_dir failed";
+
+# fixup GL_PACKAGE_CONF and GL_PACKAGE_HOOKS in the example rc
+replace( "/tmp/share/gitolite/conf",  $conf_dir,  "$conf_dir/example.gitolite.rc" );
+replace( "/tmp/share/gitolite/hooks", $hooks_dir, "$conf_dir/example.gitolite.rc" );
+
+# copy hooks
+system("cp -R hooks/* $hooks_dir") and die "cp hooks/* to $hooks_dir failed";
+
+# this is some extra gunk for people with crap setups
+path_advice();
+
+exit 0;
+
+# ----------------------------------------------------------------------
+
+sub check_args {
+    return unless @ARGV;
+    return if @ARGV == 3;
+    usage();
+}
+
+sub argv_or_defaults {
+    ( $bin_dir, $conf_dir, $hooks_dir ) = @ARGV;
+    return if @ARGV;
+
+    unless (@ARGV) {
+        my $HOME = $ENV{HOME};
+        if ( $EUID eq "0" ) {
+            ( $bin_dir, $conf_dir, $hooks_dir ) = qw(/usr/local/bin /var/gitolite/conf /var/gitolite/hooks);
+        } else {
+            ( $bin_dir, $conf_dir, $hooks_dir ) = ( "$HOME/bin", "$HOME/share/gitolite/conf", "$HOME/share/gitolite/hooks" );
+        }
+        print STDERR "using default values for EUID=$EUID:\n";
+        print STDERR join( ", ", $bin_dir, $conf_dir, $hooks_dir ), "\n";
+    }
+}
+
+sub check_dirs {
+    for my $dir ( $bin_dir, $conf_dir, $hooks_dir ) {
+        die "$dir should be an absolute path\n" unless $dir =~ m(^/);
+        mkpath($dir);
+        -d $dir or die "$dir does not exist and could not be created\n";
+    }
+}
+
+sub replace {
+    my ( $old, $new, $file ) = @_;
+    system("perl -lpi -e 's($old)($new)' $file");
+}
+
+sub record_version {
+    # this is really much easier in plain shell :(
+    if ( system("git rev-parse --is-inside-work-tree >/dev/null 2>&1") ) {
+        # for system() calls, perl 'true/success' is shell 'false/fail', which
+        # means the command failed; we are not in a git work tree
+        -f "conf/VERSION" or system("echo '(unknown)' > conf/VERSION");
+    } else {
+        system("git describe --tags --long --dirty=-dt 2>/dev/null > conf/VERSION")
+          and die "git describe failed -- your git is probably too old";
+    }
+}
+
+sub path_advice {
+    my $path_advice = "
+    Since gl-setup MUST be run from the PATH (and not as src/gl-setup or
+    such), you must fix this before running gl-setup.  Just add
+
+        PATH=$bin_dir:\$PATH
+
+    to the end of your bashrc or similar file.  You can even simply do that
+    manually each time you log in and want to run a gitolite command.\n";
+
+    for my $p ( split( ':', $ENV{PATH} ) ) {
+        return if $p eq $bin_dir;    # all is well
+
+        if ( -x "$p/gl-setup" ) {
+            #<<<
+            die "                ***** WARNING *****\n" .
+                "    you have installed the sources into $bin_dir, but\n" .
+                "    $p in your \$PATH *also* contains gl-setup.\n" .
+                "    This is almost certainly going to confuse you or me later.\n" .
+                $path_advice;
+            #>>>
+        }
+    }
+
+    #<<<
+    die "                ***** WARNING *****\n" .
+        "    gl-setup is not in your \$PATH.\n" .
+        $path_advice;
+    #>>>
+}
+
+sub usage {
+    print "
+Usage:
+    gl-system-install [bin-dir conf-dir hooks-dir]
+
+Requires all 3 arguments or none.  All arguments supplied must be absolute
+paths.  The following defaults are used if arguments are not supplied:
+
+    as normal user: \$HOME/bin, \$HOME/share/gitolite/conf, \$HOME/share/gitolite/hooks
+    as root:        /usr/local/bin, /var/gitolite/conf, /var/gitolite/hooks
+";
+    exit 1;
+}
+

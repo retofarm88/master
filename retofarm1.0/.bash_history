@@ -1,0 +1,524 @@
+#1647618589
+pwd
+#1647618591
+ls
+#1647618877
+cd apps
+#1647618879
+ls
+#1647618890
+cat retofarm88_retofarm.log
+#1647618894
+ls -al retofarm88_retofarm.log
+#1647622823
+exi
+#1647622825
+exit
+#1648054009
+npm install express mysql
+#1648054025
+apt install npm
+#1648054078
+pwd
+#1648054081
+ls
+#1648054084
+cd apps
+#1648054085
+ls
+#1648054090
+ls -altr
+#1648054101
+tail retofarm88_retofarm88.log
+#1648054119
+tail -f retofarm88_retofarm88.log
+#1648054144
+ls -altr
+#1648054149
+view retofarm88_retofarm88.log
+#1648054380
+exit
+#1648745428
+ls
+#1648745537
+cd apps
+#1648745545
+cd r*8
+#1648745547
+ls -altr
+#1648745554
+cat database.js
+#1648745572
+cat web.js
+#1648745579
+head web.js
+#1648745608
+cp web.js web.js.org
+#1648745873
+vi web.js
+#1648745931
+node web.js
+#1648746184
+cp web.js web.js.UW
+#1648746189
+cp web.js.org web.js
+#1648746248
+cp web.js.UW web.js
+#1648746296
+ls
+#1648746461
+ls
+#1648746885
+view web.js
+#1648749725
+xit
+#1648749728
+exit
+#1648890898
+ls
+#1648890901
+cd apps
+#1648890904
+ls -alt
+#1648890908
+cd r*8
+#1648890910
+ls -alt
+#1648890937
+diff web.js web.js.UW
+#1648890944
+cat web.js.UW
+#1648890946
+ls
+#1648890953
+cat web1.js
+#1648890966
+head web1.js
+#1648890976
+cp web1.js web.js
+#1648891036
+ls w*
+#1648891046
+cp 'web - 복사본.js'  web.js
+#1648891053
+head web.js
+#1648891111
+vi web.js
+#1648891147
+cp web.js.UW web.js
+#1648891149
+vi web.js
+#1648891201
+node web.js
+#1649223481
+ll
+#1649223494
+ls -la
+#1649246513
+ll
+#1649246518
+ll
+#1649246522
+ls -la
+#1649246527
+cd apps
+#1649246528
+ll
+#1649246532
+ll -la
+#1649246538
+ls -la
+#1649246545
+cd retofarm88_retofarm88/
+#1649246545
+ll
+#1649246554
+cd ~
+#1649246559
+ls -la
+#1649246568
+vi .bash_history 
+#1649246591
+cd apps
+#1649246596
+cd -la
+#1649246602
+ls -la
+#1649246604
+cd retofarm88_retofarm88/
+#1649246606
+ls -la
+#1649246610
+vi app.js
+#1649246689
+vi config/
+#1649246695
+cd config/
+#1649246696
+ll
+#1649246702
+ls -la
+#1649246707
+vi database.js 
+#1649246901
+cd ~
+#1649246905
+ls -la
+#1649246923
+vi .bashrc
+#1649246939
+ll
+#1649246954
+source ./bashrc
+#1649246961
+source .bashrc
+#1649246983
+source ~/bashrc
+#1649246990
+source ~/.bashrc
+#1649247009
+source .bashrc
+#1649247017
+source ~/.bashrc
+#1649247024
+vi .bashrc
+#1649247066
+source ~/.bashrc
+#1649247068
+ll
+#1649247075
+cd apps
+#1649247083
+ll
+#1649247087
+cd retofarm88_retofarm88/
+#1649247087
+ll
+#1649247094
+vi database.js 
+#1649247104
+cd node_modules/
+#1649247105
+ll
+#1649247128
+cd ..
+#1649247128
+ll
+#1649247134
+vi main.js 
+#1649247167
+cd node_modules/
+#1649247167
+ll
+#1649247170
+cd ..
+#1649247171
+ll
+#1649247179
+vi package.json 
+#1649247220
+cd public/
+#1649247221
+ll
+#1649247229
+vi index.html 
+#1649247243
+ll
+#1649247247
+cd js
+#1649247248
+ll
+#1649247255
+cd ..
+#1649247255
+ll
+#1649247263
+vi location.html 
+#1649247278
+vi main.html 
+#1649247381
+ll
+#1649247384
+cd ..
+#1649247385
+ll
+#1649247391
+cd public/
+#1649247392
+ll
+#1649247397
+cd bootstrapcss/
+#1649247397
+ll
+#1649247399
+cd ..
+#1649247400
+ll
+#1649247404
+cd ..
+#1649247404
+ll
+#1649247409
+vi web.js
+#1649247446
+exit
+#1649329693
+ll
+#1649329705
+ll
+#1649329710
+ll
+#1649329713
+ls -la
+#1649329719
+vi .bashrc
+#1649329732
+source .bashrc
+#1649329735
+exit
+#1649329748
+ll
+#1649329758
+source .bashrc 
+#1649329759
+ll
+#1649330001
+ll
+#1649330005
+cd apps
+#1649330007
+pwd
+#1649227657
+ls -la
+#1649227810
+vi projects.list 
+#1649227935
+cd apps 
+#1649227943
+ls 
+#1649227958
+ls -la
+#1649228013
+cd retofarm88_retofarm88/
+#1649228032
+ls -la
+#1649230019
+scp
+#1649230031
+sudo scp
+#1649230094
+scp
+#1649230102
+sudo scp
+#1649251968
+ps -ef | grep node
+#1649506119
+exit
+#1649685849
+ls
+#1649685853
+cd apps
+#1649685854
+ls
+#1649685861
+cd r*8
+#1649685863
+ls
+#1649685894
+cp web.js web.js.bak
+#1649685897
+vi web.js
+#1649686091
+ls
+#1649686093
+cd ..
+#1649686096
+ls
+#1649686100
+tail *log
+#1649686111
+tail -f *.log
+#1649686419
+ls -altr
+#1649689062
+tar -cvf retofarm88_retofarm88.tar retofarm88_retofarm88
+#1649697614
+ls -altr
+#1649697618
+cd r*8
+#1649697620
+ls -altr
+#1649697683
+cd public
+#1649697684
+cd js
+#1649697689
+ls RT*
+#1649697697
+diff RTF_LOC_MST.js RTF_LOC_MST.js.bak
+#1649697793
+cd ..
+#1649697796
+cd ..
+#1649697799
+ls
+#1649697807
+ls -alrt
+#1649697810
+vi web.js
+#1649697876
+vi web.js
+#1649697975
+vi web.js
+#1649698856
+cd public
+#1649698857
+ls
+#1649698872
+grep PC *
+#1649698979
+vi index.html
+#1649701693
+exit
+#1649686195
+cd apps
+#1649686198
+cd r*8
+#1649686201
+cd public
+#1649686204
+ls
+#1649686210
+cd js
+#1649686211
+ls
+#1649686219
+cp RTF_LOC_MST.js RTF_LOC_MST.js.bak
+#1649686221
+vi RTF_LOC_MST.js
+#1649686410
+cp RTF_LOC_MST.js.bak RTF_LOC_MST.js
+#1649686437
+cd ..
+#1649686439
+cd ..
+#1649686441
+ls -altr
+#1649686453
+cp web.js.bak web.js
+#1649689372
+vi web.js
+#1649701701
+exit
+#1649686320
+cd apps
+#1649686324
+cd r*8
+#1649686325
+ls
+#1649686327
+cd ..
+#1649686330
+tail -f *log
+#1649686376
+tail -f *log
+#1649701712
+exit
+#1650471451
+pwd
+#1650471454
+ls
+#1650471459
+cd apps
+#1650471460
+ls
+#1650471481
+tar -cvf retofarm88_retofarm88.0421.tar retofarm88_retofarm88
+#1650471483
+ls
+#1650471487
+cd r*8
+#1650471488
+ls
+#1650471496
+vi web.js
+#1650471674
+ls -al web.js*
+#1650471684
+cp web.js web.js.bak2
+#1650471807
+diff web.js web.js.bak2
+#1650471816
+ls -al web.js
+#1650471835
+diff web.js web.js.bak2
+#1650471853
+vi web.js.bak2
+#1650471862
+vi web.js
+#1650471914
+vi web.js
+#1650472063
+cd ..
+#1650472065
+ls
+#1650472182
+vi web.js
+#1650472191
+cd r*8
+#1650472194
+vi web.js
+#1650473452
+cd views
+#1650473459
+vi common.ejs
+#1650474726
+exit
+#1650471400
+ls
+#1650471403
+cd apps
+#1650471404
+ls
+#1650471410
+tail -f r*log
+#1650471608
+tail -f r*log
+#1650472350
+tail -f r*log
+#1650474737
+exit
+#1650555639
+pwd
+#1650555643
+ls
+#1650555646
+cd apps
+#1650555648
+ls
+#1650555653
+cd r*8
+#1650555654
+ls
+#1650555666
+cd public
+#1650555668
+cd js
+#1650555670
+ls
+#1650555673
+ls -al
+#1650555684
+vi rtf_eqp_mst.js
+#1650555816
+vi rtf_eqp_mst.js
+#1650629259
+mysql
+#1650629267
+which mysql
+#1650629310
+crontab -e
+#1650629320
+crontab -l
+#1650629889
+exit

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+PWD=`pwd`
+PWD=`basename ${PWD%\.git}`
+USER=`echo ${PWD} | awk -F_ '{print \$1}'`
+
+TMP_DIR="/tmp/${USER}/${PWD}"
+TARGET_DIR="/home/hosting_users/${USER}/apps"
+
+mkdir -p $TMP_DIR
+chmod 744 $TMP_DIR
+
+result=$(git archive HEAD | (cd $TMP_DIR && tar -xvf -))
+echo -e "$result"
+
+echo "TMP_DIR = $TMP_DIR"
+echo "TARGET_DIR  = ${TARGET_DIR}"
+echo "USER = $USER"
+
+result=$(rsync -i -r $TMP_DIR $TARGET_DIR)
+echo -e "$result"
+
+rm -rf $TMP_DIR

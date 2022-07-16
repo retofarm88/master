@@ -1,0 +1,17 @@
+{
+  "root": "/home/hosting_users/retofarm88/.forever",
+  "pidPath": "/home/hosting_users/retofarm88/.forever/pids",
+  "sockPath": "/home/hosting_users/retofarm88/.forever/sock",
+  "loglength": 100,
+  "logstream": false,
+  "columns": [
+    "uid",
+    "command",
+    "script",
+    "forever",
+    "pid",
+    "id",
+    "logfile",
+    "uptime"
+  ]
+}
