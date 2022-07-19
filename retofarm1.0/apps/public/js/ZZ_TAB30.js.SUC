@@ -1,0 +1,30 @@
+$(function() {
+$("#jsGrid").jsGrid({
+  width: "100%",
+  height: "auto",
+
+  autoload:   true,
+  paging:     true,
+  pageSize:   5,
+  pageButtonCount: 5,
+  pageIndex:  1,
+
+  controller: {
+    loadData: function(filter) {
+      return $.ajax({
+//        url: "https://api.github.com/repositories",
+type: "GET",
+url: "/ZZ_TAB30/",
+ data: filter,
+dataType: "json"
+				
+      });
+    }
+  },
+  fields: [
+    {name: "zz_col1", width: 50},
+    {name: "zz_col2", width: 100}
+  ]
+});
+
+});
