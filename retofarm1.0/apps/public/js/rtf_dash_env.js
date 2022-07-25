@@ -52,9 +52,15 @@ const vgrid = new tui.Grid( {
     makeChart('chart-area',categ,'#458a3f');
     makeChart('chart-area2',categ2,'#295ba0');
     makeChart('chart-area3',categ2,'#516f7d');
+    makeChart('chart-area4',categ2,'#458a3f');
 
     makeImg('img-area',"img/shelf.png");
     makeImg('img-area2',"img/mush_move.gif");
+
+    makeImgCur('img-env',"img/climate.png");
+    makeImgCur('img-env2',"img/humidity.png");
+    makeImgCur('img-env3',"img/co2.png");
+    makeImgCur('img-env4',"img/illu.png");
 
     function makeImg(ename,path){
       var el = document.getElementById(ename);
@@ -64,6 +70,13 @@ const vgrid = new tui.Grid( {
       el.appendChild(img);
     }
   
+    function makeImgCur(ename,path){
+      var el = document.getElementById(ename);
+      var img = document.createElement("img");
+      img.src = path;
+      img.width =280
+      el.appendChild(img);
+    }
 
 
     function makeChart(area,cat,col)
