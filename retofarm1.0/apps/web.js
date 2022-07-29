@@ -61,16 +61,17 @@ app.use(express.urlencoded({extended:true}));
 
 var con = require('./config/database.js');
 const web2 = require("./web_2");
+const web_chart = require("./web_chart");
 
 
 
-app.get('/rtf_dash_env', function(req,res){ // 2
-	var login_nm = "";
-	// if (req.session.isLogined) {
-	// 	login_nm = req.session.user_nm;
-	// }
-  res.render('common', {name:"/js/rtf_dash_env.js", user_nm:login_nm});
-});
+// app.get('/rtf_dash_env', function(req,res){ // 2
+// 	var login_nm = "";
+// 	// if (req.session.isLogined) {
+// 	// 	login_nm = req.session.user_nm;
+// 	// }
+//   res.render('common', {name:"/js/rtf_dash_env.js", user_nm:login_nm});
+// });
 
 
 // views/common.js 가 html template 이다
@@ -361,6 +362,9 @@ app.get('/login', function(req,rsp){
 		// }
     });
 })
+
+
+web_chart.chartRoute(app);
 
 
 // 80 포트로 서버 오픈

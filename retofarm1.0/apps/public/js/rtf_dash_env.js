@@ -20,30 +20,74 @@ const vgrid = new tui.Grid( {
  
   //editingEvent : 'click',
   columns: [
-      { name: 'loc_cd', header:'코드', editor: 'text', width: 60 ,align:"center"},
-      { name: 'loc_nm', header:'위치명', editor: 'text', width: 120,align:"center" },
-      { name: "up_loc", header:"상위위치", editor: "text", width: 120, align:"center" },
+      { name: 'grw_cd', header:'코드', editor: 'text', width: 60 ,align:"center"},
+      { name: 'grw_nm', header:'위치명', editor: 'text', width: 120,align:"center" },
+      { name: "loc_cd", header:"상위위치", editor: "text", width: 120, align:"center" },
      
    ]
  ,
- data: [
-                    {
-                      "loc_cd": "1",
-                      "loc_nm": "1층1동_느타리버섯",
-                      "up_loc": "1층1동"
-                    },
-                    {
-                      "loc_cd": "2",
-                      "loc_nm": "2층2동_영지버섯",
-                      "up_loc": "2층2동"
-                    }
-                  
-                  ]
+  data: {
+    contentType: 'application/json',
+
+    api: {
+          readData: { url: () => `/rtf_chart_loc`, method: 'GET' },
+      }
+    
+  }
+  ,initialRequest: false 
 
   ,rowHeaders: [
       { type: 'rowNum' }
     ]
+    ,selectionUnit: 'row'
 } )
+
+
+vgrid.on('click', function(ev) {
+
+  console.log(vgrid.getRow(ev.rowKey).grw_cd);
+  
+  var grw_cd =vgrid.getRow(ev.rowKey).grw_cd;
+  
+  $.ajax({
+    url : "rtf_chart_sel_loc?grw_cd="+grw_cd, // 어디로 갈거니? // 갈 때 데이터
+    type : "get", // 타입은 뭘 쓸거니?
+    datatype : "json",
+    success : function(data) { // 갔다온 다음 결과값
+
+      console.log("1111");
+      var resdata = JSON.parse(JSON.stringify(data[0]));
+      console.log("cur_num =" + resdata["cur_num"]);
+      var el = document.getElementById("img-env_text");
+      el.textContent = resdata["cur_num"];
+
+      resdata = JSON.parse(JSON.stringify(data[1]));
+      var el = document.getElementById("img-env2_text");
+      el.textContent = resdata["cur_num"];
+
+      resdata = JSON.parse(JSON.stringify(data[2]));
+      var el = document.getElementById("img-env3_text");
+      el.textContent = resdata["cur_num"];
+
+      resdata = JSON.parse(JSON.stringify(data[3]));
+      var el = document.getElementById("img-env4_text");
+      el.textContent = resdata["cur_num"];
+
+
+
+
+      // var resdata2 = JSON.parse(resdata);
+      // console.log("resdata =" + resdata);
+     
+    },
+    error : function() {
+      console.log("error" );
+    }
+  });
+  
+  
+  
+});
 
     categ= ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '19'];
     categ2= ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'];
@@ -64,18 +108,36 @@ const vgrid = new tui.Grid( {
 
     function makeImg(ename,path){
       var el = document.getElementById(ename);
+
+      
       var img = document.createElement("img");
       img.src = path;
       img.width =380
+
       el.appendChild(img);
+
+
     }
   
     function makeImgCur(ename,path){
       var el = document.getElementById(ename);
+
+      var di = document.createElement("div");
+      di.className="jb-image";
+      el.appendChild(di);
+
       var img = document.createElement("img");
       img.src = path;
-      img.width =280
-      el.appendChild(img);
+      img.width =380
+      di.appendChild(img);
+
+      var di2 = document.createElement("div");
+      di2.className="jb-text";
+      di2.id = ename + "_text";
+      el.appendChild(di2);
+
+      //di2.textContent="123";
+
     }
 
 
