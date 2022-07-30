@@ -50,12 +50,39 @@ vgrid.on('click', function(ev) {
   console.log("ev.rowKey =" +grw_cd);
   
   reqSelLoc(grw_cd);
-  //reqchartvalues(grw_cd);
+
+  var dd = document.getElementById("chart-area_chart");
+  dd.remove();
+  var dd = document.getElementById("chart-area2_chart");
+  dd.remove();
+  var dd = document.getElementById("chart-area3_chart");
+  dd.remove();
+  var dd = document.getElementById("chart-area4_chart");
+  dd.remove();
+  //dd.remove();
+  
+
+  reqchartvalues(tchart,'A',grw_cd,'chart-area','#458a3f','온도');
+  reqchartvalues(tchart2,'B',grw_cd,'chart-area2','#295ba0','습도');
+  reqchartvalues(tchart3,'C',grw_cd,'chart-area3','#516f7d','CO2');
+  reqchartvalues(tchart4,'D',grw_cd,'chart-area4','#458a3f','조도');
+
+  //tui.chart.remove(tchart);
+  // tchart.setData({
+  //   categories: ['1', '2', '3'],
+  //   series: [
+  //     {
+  //       name: 'new series',
+  //       data: [1, 2, 3],
+  //     }
+  //   ]
+  // });
 
 });
 
 
-function reqchartvalues(svy_tp,grw_cd,area,colo,ti){
+
+function reqchartvalues(tcha,svy_tp,grw_cd,area,colo,ti){
   var xarray=[];
   var yarray=[];
   $.ajax({
@@ -79,7 +106,7 @@ function reqchartvalues(svy_tp,grw_cd,area,colo,ti){
       console.log("data="+data);
 
 
-      makeChart(area,xarray,yarray,colo,ti);
+      makeChart(tcha,area,xarray,yarray,colo,ti);
       
       },
       error : function() {
@@ -89,16 +116,19 @@ function reqchartvalues(svy_tp,grw_cd,area,colo,ti){
   }
 
 
+
   function initFunc(){
     categ= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 19];
     categ2= ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'];
 
     colo = '#458a3f';
-    reqchartvalues('A',2022001,'chart-area','#458a3f','온도');
-    reqchartvalues('B',2022001,'chart-area2','#295ba0','습도');
-    reqchartvalues('C',2022001,'chart-area3','#516f7d','CO2');
-    reqchartvalues('D',2022001,'chart-area4','#458a3f','조도');
+    reqchartvalues(tchart,'A',2022001,'chart-area','#458a3f','온도');
+    reqchartvalues(tchart2,'B',2022001,'chart-area2','#295ba0','습도');
+    reqchartvalues(tchart3,'C',2022001,'chart-area3','#516f7d','CO2');
+    reqchartvalues(tchart4,'D',2022001,'chart-area4','#458a3f','조도');
 
+
+        
     makeImg('img-area',"img/shelf.png");
     makeImg('img-area2',"img/mush_move.gif");
 
@@ -111,11 +141,17 @@ function reqchartvalues(svy_tp,grw_cd,area,colo,ti){
     //reqchartvalues(2022001);
   }
 
-    
-  
-  function makeChart(area,catx,caty,colo,ti)
+  var tchart;
+  var tchart2;
+  var tchart3;
+  var tchart4;
+
+  function makeChart(tcha,area,catx,caty,colo,ti)
   {
     var container = document.getElementById(area);
+    tcha = document.createElement("div");
+    tcha.id = area + "_chart";
+    container.appendChild(tcha);
     var data = {
       categories: catx,
       series: [
@@ -127,6 +163,7 @@ function reqchartvalues(svy_tp,grw_cd,area,colo,ti){
         
       ]
     };
+
     var options = {
       chart: {
           width: 600,
@@ -163,7 +200,7 @@ function reqchartvalues(svy_tp,grw_cd,area,colo,ti){
 
     tui.chart.registerTheme('myTheme', theme);
     options.theme = 'myTheme';
-    tui.chart.columnChart(container, data, options);
+    tui.chart.columnChart(tcha, data, options);
 
     
 
