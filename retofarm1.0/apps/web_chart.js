@@ -16,8 +16,8 @@ var con = require('./config/database.js');
 	});
 
 	app.get('/rtf_chart_sel_loc', function(req,res){ 
-		console.log("req:", req.query.grw_cd);
-		grw_cd = req.query.grw_cd;
+		var grw_cd = req.query.grw_cd;
+		console.log("grw_cd=" +grw_cd)
 
 		var sql = 'SELECT MAX(rsi.svy_num) as cur_num FROM rtf_svy_info rsi,  \
 		(                                                         \
@@ -34,7 +34,7 @@ var con = require('./config/database.js');
 		AND rsi.grw_cd = ?';
 
 
-		sql2 = sql +" union " + sql;
+		var sql2 = sql +" union " + sql;
 		sql2 = sql2 +" union " + sql;
 		sql2 = sql2 +" union " + sql;
 
@@ -44,6 +44,31 @@ var con = require('./config/database.js');
 		var tpD ="D";
 
 		con.query(sql2, [tpA,grw_cd,tpB,grw_cd,tpC,grw_cd,tpD,grw_cd], function (err, result, fields) {
+		if (err) throw err;
+		console.log("result=" +result)
+		res.json(result);
+		});
+	});
+
+	app.get('/rtf_chart_values', function(req,res){ 
+
+		var svy_tp = req.query.svy_tp;
+		var grw_cd = req.query.grw_cd;
+
+		console.log("svy_tp=" +svy_tp)
+		console.log("svy_tp=" +grw_cd)
+
+		var sql = 'select DISTINCT to_char(svy_dts,\'hh24\') as hh ,svy_tp  , ROUND( AVG(svy_num) over (PARTITION BY hh),2) as  avg\
+					from rtf_svy_info\
+				WHERE svy_dts   BETWEEN DATE_ADD(NOW(),INTERVAL -1 DAY ) AND NOW()\
+					and svy_tp = ?\
+					and grw_cd = ?\
+				GROUP BY svy_dts';
+
+
+		
+
+		con.query(sql, [svy_tp,grw_cd], function (err, result, fields) {
 		if (err) throw err;
 		console.log("result=" +result)
 		res.json(result);
