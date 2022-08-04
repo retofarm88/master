@@ -166,8 +166,8 @@ function reqchartvalues(tcha,svy_tp,grw_cd,area,colo,ti){
 
     var options = {
       chart: {
-          width: 600,
-          height: 300,
+          width: 560,
+          height: 280,
           //title: ti,
           format: '1,000'
       },
@@ -266,7 +266,7 @@ function reqSelLoc(grw_cd){
 
       var img = document.createElement("img");
       img.src = path;
-      img.width =380
+      img.width =300
       di.appendChild(img);
 
       var di2 = document.createElement("div");
