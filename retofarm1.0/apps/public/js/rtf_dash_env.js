@@ -17,6 +17,10 @@ const vgrid = new tui.Grid( {
   el: document.getElementById('dashGrid'),
   scrollX : true,
   scrollY : false,
+  bodyHeight: 500,
+  border: '#ff0000',
+  
+ 
  
   //editingEvent : 'click',
   columns: [
@@ -166,8 +170,8 @@ function reqchartvalues(tcha,svy_tp,grw_cd,area,colo,ti){
 
     var options = {
       chart: {
-          width: 560,
-          height: 280,
+          width: 450,
+          height: 190,
           //title: ti,
           format: '1,000'
       },
@@ -250,7 +254,7 @@ function reqSelLoc(grw_cd){
     
     var img = document.createElement("img");
     img.src = path;
-    img.width =380
+    img.width =310
 
     el.appendChild(img);
   }
@@ -266,7 +270,7 @@ function reqSelLoc(grw_cd){
 
       var img = document.createElement("img");
       img.src = path;
-      img.width =300
+      //img.width =300
       di.appendChild(img);
 
       var di2 = document.createElement("div");
